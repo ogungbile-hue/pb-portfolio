@@ -1,0 +1,60 @@
+/* ─────────────────────────────────────────
+   RESET & ROOT
+───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:   #000000;
+  --white:   #ffffff;
+  --copper:  #FF6B35;
+  --copper2: rgba(255,107,53,.15);
+  --dim1:    rgba(255,255,255,0.05);
+  --dim2:    rgba(255,255,255,0.10);
+  --dim3:    rgba(255,255,255,0.18);
+  --muted:   rgba(255,255,255,0.38);
+  --faint:   rgba(255,255,255,0.08);
+  --serif:  'DM Serif Display', serif;
+  --mono:   'DM Mono', monospace;
+  --pad:    60px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--mono);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ─────────────────────────────────────────
+   CURSOR
+───────────────────────────────────────── */
+#cur  { position:fixed; width:8px; height:8px; background:var(--copper); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .15s,height .15s; }
+#cur-r{ position:fixed; width:32px; height:32px; border:1px solid rgba(255,107,53,.35); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); }
+body:has(a:hover,button:hover) #cur  { width:5px; height:5px; }
+body:has(a:hover,button:hover) #cur-r{ width:50px; height:50px; border-color:var(--copper); }
+
+/* ─────────────────────────────────────────
+   GLOBAL BG GRID
+───────────────────────────────────────── */
+#grid {
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    linear-gradient(var(--dim1) 1px,transparent 1px),
+    linear-gradient(90deg,var(--dim1) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+/* ─────────────────────────────────────────
+   WATERMARK
+───────────────────────────────────────── */
+#watermark {
+  position: fixed; right: -60px; top: 50%; transform: translateY(-50%);
+  font-family: var(--serif);
+  font-size: clamp(280px,28vw,440px);
+  color: rgba(255,255,255,.018);
+  line-height: 1; pointer-events: none; z-index: 0;
+  user-select: none; letter-spacing: -.05em;
+}
